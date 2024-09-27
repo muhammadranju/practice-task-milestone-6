@@ -106,21 +106,21 @@ const findMax = (arr1, arr2) => {
 // numbers.push(25);
 // console.log(numbers);
 
-// const countLength = (array) => {
-//   const newArr = [];
-//   for (let arr of array) {
-//     if (arr.length % 2 === 0) {
-//       newArr.push({ name: arr, count: arr.length });
-//     }
-//   }
-//   return newArr;
-// };
+const countLength = (array) => {
+  const newArr = [];
+  for (let arr of array) {
+    if (arr.length % 2 === 0) {
+      newArr.push({ name: arr, count: arr.length });
+    }
+  }
+  return newArr;
+};
 // console.log(countLength(["Ranju", "Amin", "Hossain", "MD"]));
 
 const squareNumber = (array) => {
   let sqNUmberArr = [];
   for (let num of array) {
-    let sqNUmber = num ** 2;
+    let sqNUmber = num * num;
     sqNUmberArr.push(sqNUmber);
   }
   let sum = 0;
@@ -131,4 +131,4 @@ const squareNumber = (array) => {
   return sum / sqNUmberArr.length;
 };
 
-console.log(squareNumber([1, 2, 5, 10, 4, 7]));
+// console.log(squareNumber([1, 2, 5, 10, 4, 7]));
