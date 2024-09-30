@@ -24,22 +24,46 @@ const jsonObject = {
 
 // Accessing data in a JSON object:
 
-console.log(jsonObject.name); // Output: John Doe
-console.log(jsonObject.age); // Output: 30
-console.log(jsonObject.city); // Output: New York
+// console.log(jsonObject.name); // Output: John Doe
+// console.log(jsonObject.age); // Output: 30
+// console.log(jsonObject.city); // Output: New York
 
 // An example of a JSON array:
 
-const jsonArray = ["apple", "banana", "orange"];
+// const jsonArray = ["apple", "banana", "orange"];
 
 // Accessing data in a JSON array:
 
-console.log(jsonArray[0]); // Output: apple
-console.log(jsonArray[1]); // Output: banana
-console.log(jsonArray[2]); // Output: orange
+// console.log(jsonArray[0]); // Output: apple
+// console.log(jsonArray[1]); // Output: banana
+// console.log(jsonArray[2]); // Output: orange
 
 // JSON is commonly used for:
 
 // 1. Storing and exchanging data between a server and a web application.
 // 2. Configuring applications.
 // 3. Serializing and deserializing objects.
+
+const shopDetails = {
+  name: "Apple Store",
+  owner: "John Doe",
+  address: {
+    street: "123 Main St",
+    city: "New York",
+    country: "USA",
+  },
+  products: ["laptop", "mic", "monitor", "keyboard", "mouse"],
+  revenue: 45000,
+  isOpen: true,
+  isNew: false,
+};
+
+// Convert the shopDetails object to a JSON string
+const shopDetailsJson = JSON.stringify(shopDetails);
+
+console.log(shopDetailsJson); // Print the JSON string to the console
+
+// Parse the JSON string back into a JavaScript object
+const parsedShopDetails = JSON.parse(shopDetailsJson);
+
+console.log(parsedShopDetails); // Print the parsed object to the console
