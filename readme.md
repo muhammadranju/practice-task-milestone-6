@@ -1,3 +1,15 @@
+## Demo
+
+Live Websiute Link:
+https://batch9-assignment6-retro-forum.surge.sh
+
+![Logo](./day_6/RetroForum/images/screenshot.jpeg)
+
+## Make Resources
+
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Daisy UI](https://daisyui.com/)
+
 # Common Interview Questions
 
 ## 1. What is an API?
