@@ -25,8 +25,8 @@ async function discuss() {
   const posts = await response.json();
   for (let post of posts.posts) {
     discussCardSection.innerHTML += /*html*/ `
-        <div class="lg:w-[1000px] md:w-[650px]">
-              <div class="flex bg-[#F3F3F5] justify- p-10 gap-5 rounded-3xl">
+        <div class="lg:w-[950px] md:w-[680px]">
+              <div class="flex bg-[#F3F3F5] justify- p-10 gap-5 rounded-3xl ">
                 <div class="avatar indicator">
                   <div class="w-20 h-20 rounded-xl">
                     ${
@@ -45,12 +45,12 @@ async function discuss() {
                   <h3 class="font-extrabold lg:text-xl">
                   ${post.title}
                   </h3>
-                  <p class=" font-semibold text-gray-500">
+                  <p class=" font-semibold text-gray-500 w-full">
                   ${post.description}
                   </p>
                   <div class="border border-dashed mb-2"></div>
                   <div
-                    class="lg:space-x-6 space-x-4 text-gray-500 lg:text-lg text-sm flex justify-between lg:w-[800px]"
+                    class="lg:space-x-6 space-x-4 relative text-gray-500 lg:text-lg text-sm flex justify- gap-x-96 "
                   >
                     <div class="space-x-3">
                     <span><i class="fa-solid fa-envelope mr-1"></i>${
@@ -63,13 +63,12 @@ async function discuss() {
                         post.posted_time
                       } min</span>
                     </div>
-
-                    <button
-                      class="p-1 pb-8 bg-green-500 rounded-full h-8 w-9 text-center"
-                      onclick="count('${post.title}','${post.view_count}')"
-                    >
-                      <i class="fa-solid fa-envelope-open text-white"></i>
-                    </button>
+                      <button
+                        class="p-1 pb-8 bg-green-500 rounded-full h-8 w-9 text-center "
+                        onclick="count('${post.title}','${post.view_count}')"
+                      >
+                        <i class="fa-solid fa-envelope-open text-white"></i>
+                      </button>
                   </div>
                 </div>
               </div>
@@ -145,23 +144,25 @@ async function posts() {
 
 searchBtn.addEventListener("click", async () => {
   //   searchDiscussSection.classList.remove("hidden");
-  discussCardSection.classList.add("hidden");
-  searchDiscussSection.innerHTML = "";
-
-  spinnerDiscuss.classList.remove("hidden");
-  discussSection.classList.add("hidden");
-  searchDiscussSection.classList.add("hidden");
 
   try {
-    const response = await fetch(
-      `${discussPost}?category=${searchInput.value}`
-    );
-    const posts = await response.json();
-    for (let post of posts.posts) {
-      console.log(post);
+    if (searchInput.value.length > 0) {
+      discussCardSection.classList.add("hidden");
+      searchDiscussSection.innerHTML = "";
 
-      searchDiscussSection.innerHTML += /*html*/ `
-              <div class="lg:w-[1000px] md:w-[650px]">
+      spinnerDiscuss.classList.remove("hidden");
+      discussSection.classList.add("hidden");
+      searchDiscussSection.classList.add("hidden");
+
+      const response = await fetch(
+        `${discussPost}?category=${searchInput.value}`
+      );
+      const posts = await response.json();
+      for (let post of posts.posts) {
+        //   console.log(post);
+
+        searchDiscussSection.innerHTML += /*html*/ `
+              <div class="lg:w-full">
                     <div class="flex bg-[#F3F3F5] justify- p-10 gap-5 rounded-3xl">
                       <div class="avatar indicator">
                         <div class="w-20 h-20 rounded-xl">
@@ -186,7 +187,7 @@ searchBtn.addEventListener("click", async () => {
                         </p>
                         <div class="border border-dashed mb-2"></div>
                         <div
-                          class="lg:space-x-6 space-x-4 text-gray-500 lg:text-lg text-sm flex justify-between lg:w-[800px]"
+                          class="lg:space-x-6 space-x-4 text-gray-500 lg:text-lg text-sm flex justify-between lg:w-full"
                         >
                           <div class="space-x-3">
                           <span><i class="fa-solid fa-envelope mr-1"></i>${
@@ -203,8 +204,8 @@ searchBtn.addEventListener("click", async () => {
                           <button
                             class="p-1 pb-8 bg-green-500 rounded-full h-8 w-9 text-center"
                             onclick="count('${post.title}','${
-        post.view_count
-      }')"                          >
+          post.view_count
+        }')"                          >
                             <i class="fa-solid fa-envelope-open text-white"></i>
                           </button>
                         </div>
@@ -212,11 +213,12 @@ searchBtn.addEventListener("click", async () => {
                     </div>
                   </div>
               `;
-    }
+      }
 
-    searchInput.value = "";
+      searchInput.value = "";
+    }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   } finally {
     // Hide the spinner after 2 seconds
     setTimeout(() => {
